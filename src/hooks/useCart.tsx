@@ -62,9 +62,12 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const removeProduct = (productId: number) => {
     try {
-      // TODO
+      const products = cart.filter(product => product.id !== productId)
+
+      setCart(products);
+      localStorage.setItem('@RocketShoes:cart', JSON.stringify(products));
     } catch {
-      // TODO
+      toast.error('Quantidade solicitada fora de estoque');
     }
   };
 
